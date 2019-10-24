@@ -29,6 +29,24 @@ usage: build-self-extract.php [-h] [-q] [-v] [-i /ipath/to/input_dir] [-o /path/
 -o OUTPUT.php ,output self extract php file name
 ```
 
+## tips
+
+#### extract fail by max_execution_time
+
+Edit `extractor.php` and retry from generate .
+
+or, need more powerfull server.
+
+#### extract fail by memory_limit
+
+Edit `extractor.php` and retry from generate .
+
+or, need more rich server.
+
+#### zip fail
+
+You need more nice server.
+
 ## license
 
 MIT
