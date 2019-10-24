@@ -28,6 +28,7 @@ if (file_exists($tmp_zip_path)) {
     unlink($tmp_zip_path);
 }
 
+# scan files
 $files = new RecursiveIteratorIterator(
     new RecursiveDirectoryIterator(
         $input_dir,
@@ -36,12 +37,14 @@ $files = new RecursiveIteratorIterator(
     RecursiveIteratorIterator::SELF_FIRST
 );
 
+# make zip file
 $zip = new ZipArchive();
 $result = $zip->open($tmp_zip_path, ZipArchive::CREATE);
 if ($result !== true) {
     die($result . PHP_EOL);
 }
 
+# process scaned files.
 if ($files->valid() === false) {
     die("any file found, exit." . PHP_EOL);
 }
@@ -61,14 +64,17 @@ foreach ($files as $file_path => $file_info) {
     }
 }
 
+# save
 $zip->close();
 
+# build self-extract-php
 copy("extractor.php", $output_zip_path);
 
 $output_zip_fp = fopen($output_zip_path, "a+");
 $tmp_zip_fp = fopen($tmp_zip_path, "r");
 fwrite($output_zip_fp, fread($tmp_zip_fp, filesize($tmp_zip_path)));
 
+# cleanup
 fclose($output_zip_fp);
 fclose($tmp_zip_fp);
 
