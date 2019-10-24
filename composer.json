@@ -1,0 +1,13 @@
+{
+    "name": "uzulla/self-extract-php",
+    "description": "generate self-extract-php file.",
+    "scripts": {
+        "build-from-input": [
+            "build-self-extract.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.3",
+        "ext-zip": "*"
+    }
+}
